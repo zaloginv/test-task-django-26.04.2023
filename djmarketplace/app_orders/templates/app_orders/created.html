@@ -1,0 +1,11 @@
+{% extends "djmarketplace/base.html" %}
+{% load static %}
+{% block title %}
+    Checkout
+{% endblock %}
+{% block body %}
+    <h1>Thank you</h1>
+    <p>Your order has been successfully completed. Your order number is
+        <strong>{{ order.id }}</strong>.</p>
+    <br>Your <a href="{% url 'app-users:login' %}"><b>profile</b></a>
+{% endblock %}

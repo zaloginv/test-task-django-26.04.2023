@@ -1,0 +1,16 @@
+{% extends 'djmarketplace/base.html' %}
+
+{% block title %}
+    Main page
+{% endblock %}
+
+{% block body %}
+    <h2>Main page</h2>
+    Welcome to <b>MARKETPLACE</b>
+
+    <p>Our best product: {{ best_product }}</p>
+
+    <br>You can view shops list <a href="{% url 'app-shop:shop-list' %}"><b>here</b></a>
+    <br>and login <a href="{% url 'app-users:login' %}"><b>here</b></a>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'djmarketplace/base.html' %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+
+    <h2>{{ request.user.username }}'s profile</h2>
+    Your status is <b>{{ request.user.profile.status }}</b>
+    <ul>
+        <li>Name: {{ request.user.first_name }}</li>
+        <li>Surname: {{ request.user.last_name }}</li>
+        <li>Email: {{ request.user.email }}</li>
+        <li>Balance: {{ request.user.profile.balance }} RUB</li>
+    </ul>
+    Press <a href="{% url 'app-users:logout' %}"><b>here</b></a> to logout
+    <br> or press <a href="{% url 'app-users:balance-replenishment' %}"><b>here</b></a> to replenish your balance
+    <br> or <a href="{% url 'app-shop:main' %}"><b>here</b></a> to go to main page
+
+{% endblock %}

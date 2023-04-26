@@ -1,0 +1,31 @@
+{% extends "djmarketplace/base.html" %}
+{% load static %}
+{% block title %}
+    Your shopping cart
+{% endblock %}
+{% block body %}
+    <h1>Your shopping cart</h1>
+
+        {% for item in cart %}
+
+                <div>
+
+                    <p><b>{{ item.product.product.name }}</b></p>
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p><a href="{% url "app_cart:cart_remove" item.product.shop.id item.product.id %}">Remove</a></p>
+                    <p>Item price: {{ item.price }} RUB</p>
+                    <p>Total price: {{ item.total_price }} RUB</p>
+                </div>
+
+
+        {% endfor %}
+
+    <p><b>Total</b></p>
+    <p>{{ cart.get_total_price }}</p>
+    <a href="{% url "app_orders:order_create" cart.shop_id %}" class="button">
+        Checkout
+    </a>
+
+    <p><a href="{% url 'app-shop:shop-detail' cart.shop_id %}">Return to shop</a></p>
+
+{% endblock %}

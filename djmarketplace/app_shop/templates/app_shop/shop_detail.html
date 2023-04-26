@@ -1,0 +1,40 @@
+{% extends 'djmarketplace/base.html' %}
+
+{% block title %}
+    Main page
+{% endblock %}
+
+{% block body %}
+        <h2>Shop {{ shop_detail.name }}</h2>
+        <p>{{ shop_detail.description }}</p>
+        <p>We will deliver yours purchase from <b>{{ shop_detail.location }}</b></p>
+        <h3>List of products</h3>
+        <p><b>Remember, you can buy products only in one shop at once</b></p>
+        {% if ph_list %}
+
+                {% for ph in ph_list %}
+
+                    <div>
+                        <br>{{ ph.product.id }} |
+                        {{ ph.product.name }}
+                        | {{ ph.price }} RUB |
+                        <form action="{% url "app_cart:cart_add" ph.shop.id ph.product.id %}" method="post">
+                            {{ cart_product_form }}
+                            {% csrf_token %}
+                            <input type="submit" value="Add to cart">
+                        </form>
+                        <br><br>
+                    </div>
+
+                {% endfor %}
+
+
+
+        {% else %} <p>There are no products here</p>
+
+        {% endif %}
+
+    <br>Return to <a href="{% url 'app-shop:main' %}"><b>main page</b></a>
+    <br>or to <a href="{% url 'app-shop:shop-list' %}"><b>shop list</b></a>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'djmarketplace/base.html' %}
+
+{% block title %}
+    Main page
+{% endblock %}
+
+{% block body %}
+        <h2>Shops list</h2>
+        {% if shop_list %}
+
+                {% for shop in shop_list %}
+
+                    <div>
+                        <br>{{ shop.id }} | <a href="{% url 'app-shop:shop-detail' pk=shop.id %}">
+                        {{ shop.name }}</a> |
+                        <br><br>
+                        <table border="1"><tr><td>{{ shop.description|truncatechars:100 }}</td></tr></table>
+                    </div>
+
+                {% endfor %}
+
+
+
+        {% else %} There are no shops here
+
+        {% endif %}
+
+    <br>Return to <a href="{% url 'app-shop:main' %}"><b>main page</b></a>
+
+{% endblock %}
